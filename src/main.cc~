@@ -35,7 +35,7 @@ struct SDLWindowDeleter {
 };
 
 void Draw(const std::shared_ptr<SDL_Window> window, const std::shared_ptr<GameWorld> game_world) {
-  glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
+  glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
   game_world->Draw();
@@ -91,7 +91,10 @@ std::shared_ptr<SDL_Window> InitWorld() {
   // The *must* be done after we have set the video mode - otherwise we have no
   // OpenGL context to test.
   glewInit();
-  
+  if (!glewIsSupported("GL_VERSION_3_0")) {
+    std::cerr << "OpenGL 3.0 not available" << std::endl;
+    return nullptr;
+  }
 
   // OpenGL settings
   glDisable(GL_CULL_FACE);
