@@ -15,6 +15,9 @@ GameAssetManager::GameAssetManager(ApplicationMode mode) {
   case SCALE:
     vertex_shader = "shaders/scale.vs";
     break;
+  case MOVE:
+    vertex_shader = "shaders/move.vs";
+    break;
   case TRANSFORM:
   default:
     break;

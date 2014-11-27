@@ -19,18 +19,18 @@ mat4 projection(
            );
 }
 
-mat4 scale(float x, float y, float z) {
+mat4 translate(float x, float y, float z) {
     return mat4(
-             vec4(x, 0.0, 0.0, 0.0),
-             vec4(0.0, y, 0.0, 0.0),
-             vec4(0.0, 0.0, z, 0.0),
-             vec4(0.0, 0.0, 0.0, 1.0)
+             vec4(1.0, 0.0, 0.0, 0.0),
+             vec4(0.0, 1.0, 0.0, 0.0),
+             vec4(0.0, 0.0, 1.0, 0.0),
+             vec4(x, y, z, 1.0)
            );
 }
 
 void main() {
       gl_Position = projection(radians(45.0), 4.0/3.0, -0.1, -1000.0)
-                    * scale(1.0, 1.0, 1.0)
-                    * vec4(position, 1.0f);
-      frag_color = vec3(1.0, 0.0, 0.0); // red
+                      * translate(0.0, 0.0, -5.0)
+                      * vec4(position, 1.0f);
+      frag_color = vec3(1.0, 0.0, 0.0); // RED
 }
